@@ -11,12 +11,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xff7FB77E),
-        ),
-        body: Center(
+    return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget> [
@@ -52,9 +47,7 @@ class _MainPageState extends State<MainPage> {
               )
             ]
           ),
-        ),
-      ),
-    );
+        );
   }
 }
 
