@@ -3,10 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:frontend_jshy/main.dart';
 import 'package:frontend_jshy/selectpage.dart';
 import 'package:frontend_jshy/theme/colors.dart';
 import 'package:frontend_jshy/widgets/loading.dart';
@@ -14,14 +11,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/route_manager.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:multi_image_crop/multi_image_crop.dart';
-// import 'package:multi_image_picker/multi_image_picker.dart';
-// import 'package:multi_crop_picker/picker.dart';
-// import 'package:multi_image_crop/multi_image_crop.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 
 import 'inputpage.dart';
 
@@ -69,6 +61,73 @@ class _MainPageState extends State<MainPage> {
   // XFile? _image;
   // CroppedFile? _croppedImage;
 
+  Widget getImageButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+            height: 100,
+            width: 100,
+            child: RawMaterialButton(
+              onPressed: () {
+                getImage();
+              },
+              elevation: 0.0,
+              fillColor: ColorStyles.mainGreen,
+              padding: const EdgeInsets.all(15.0),
+              shape: const CircleBorder(),
+              child: const Icon(
+                Icons.image,
+                size: 70,
+                color: Colors.white,
+              ),
+            )),
+        Container(
+            margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+            child: Column(children: <Widget>[
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: const Text("이미지로 추가하기", style: TextStyle(fontSize: 20)),
+              ),
+            ])),
+      ],
+    );
+  }
+
+  Widget getInputButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+            height: 100,
+            width: 100,
+            child: RawMaterialButton(
+              onPressed: () {
+                Get.to(() => const InputPage());
+              },
+              elevation: 0.0,
+              focusElevation: 0.0,
+              fillColor: ColorStyles.mainGreen,
+              padding: const EdgeInsets.all(15.0),
+              shape: const CircleBorder(),
+              child: const Icon(
+                Icons.edit_note,
+                size: 70,
+                color: Colors.white,
+              ),
+            )),
+        Container(
+            margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+            child: Column(children: <Widget>[
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: const Text("정산내용 입력하기", style: TextStyle(fontSize: 20)),
+              ),
+            ])),
+      ],
+    );
+  }
+
   late List<XFile?> _imgList;
   final List<CroppedFile?> _croppedImgList = [];
 
@@ -77,11 +136,9 @@ class _MainPageState extends State<MainPage> {
     _croppedImgList.clear();
     // for gallery
     var imgList = await ImagePicker().pickMultiImage();
-    if (imgList != null) {
-      setState(() {
-        _imgList = imgList!;
-      });
-    }
+    setState(() {
+      _imgList = imgList!;
+    });
 
     if (_imgList.isNotEmpty) {
       _isLoading = true;
@@ -196,72 +253,5 @@ class _MainPageState extends State<MainPage> {
       Get.to(() => const SelectPage(),
           arguments: {'img': images, 'result': result});
     }
-  }
-
-  Widget getImageButton() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-            height: 100,
-            width: 100,
-            child: RawMaterialButton(
-              onPressed: () {
-                getImage();
-              },
-              elevation: 0.0,
-              fillColor: ColorStyles.mainGreen,
-              padding: const EdgeInsets.all(15.0),
-              shape: const CircleBorder(),
-              child: const Icon(
-                Icons.image,
-                size: 70,
-                color: Colors.white,
-              ),
-            )),
-        Container(
-            margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-            child: Column(children: <Widget>[
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: const Text("이미지로 추가하기", style: TextStyle(fontSize: 20)),
-              ),
-            ])),
-      ],
-    );
-  }
-
-  Widget getInputButton() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-            height: 100,
-            width: 100,
-            child: RawMaterialButton(
-              onPressed: () {
-                Get.to(() => const InputPage());
-              },
-              elevation: 0.0,
-              focusElevation: 0.0,
-              fillColor: ColorStyles.mainGreen,
-              padding: const EdgeInsets.all(15.0),
-              shape: const CircleBorder(),
-              child: const Icon(
-                Icons.edit_note,
-                size: 70,
-                color: Colors.white,
-              ),
-            )),
-        Container(
-            margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-            child: Column(children: <Widget>[
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: const Text("정산내용 입력하기", style: TextStyle(fontSize: 20)),
-              ),
-            ])),
-      ],
-    );
   }
 }

@@ -131,60 +131,6 @@ class _ResultPageState extends State<ResultPage> {
     );
   }
 
-  void getByTypes(String type) {
-    if (type == 'SHARE') {
-      _capture();
-    } else if (type == 'HOME') {
-      _goHome();
-    } else {
-      return;
-    }
-  }
-
-  void _capture() async {
-    print("START CAPTURE");
-    var renderObject = globalKey.currentContext?.findRenderObject();
-    if (renderObject is RenderRepaintBoundary) {
-      var boundary = renderObject;
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      final directory = (await getApplicationDocumentsDirectory()).path;
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List? pngBytes = byteData?.buffer.asUint8List();
-      File imgFile = File('$directory/screenshot.png');
-      imgFile.writeAsBytes(pngBytes!);
-      // var imgFile = File.fromRawPath(pngBytes!);
-      if (imgFile != null) {
-        _shareBill(imgFile);
-      }
-    }
-  }
-
-  void _shareBill(File file) {
-    String text;
-    if (Get.arguments['bank'] != '') {
-      text = "정산해욥:: ${Get.arguments['bank']}";
-    } else {
-      text = "정산해욥";
-    }
-
-    if (Platform.isAndroid) {
-      print("Android");
-      Share.shareXFiles([XFile(file.path)], text: text);
-    } else {
-      print("IOS");
-      var box = globalKey.currentContext?.findRenderObject() as RenderBox?;
-      Share.shareXFiles([XFile(file.path)],
-          text: text,
-          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-    }
-  }
-
-  void _goHome() {
-    _onBackKey('HOME');
-    // Get.offAll(() => const MainApp());
-  }
-
   Future<bool> _onBackKey(String type) async {
     return await showDialog(
         context: context,
@@ -264,6 +210,60 @@ class _ResultPageState extends State<ResultPage> {
             ],
           );
         });
+  }
+
+  void getByTypes(String type) {
+    if (type == 'SHARE') {
+      _capture();
+    } else if (type == 'HOME') {
+      _goHome();
+    } else {
+      return;
+    }
+  }
+
+  void _capture() async {
+    print("START CAPTURE");
+    var renderObject = globalKey.currentContext?.findRenderObject();
+    if (renderObject is RenderRepaintBoundary) {
+      var boundary = renderObject;
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      final directory = (await getApplicationDocumentsDirectory()).path;
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List? pngBytes = byteData?.buffer.asUint8List();
+      File imgFile = File('$directory/screenshot.png');
+      imgFile.writeAsBytes(pngBytes!);
+      // var imgFile = File.fromRawPath(pngBytes!);
+      if (imgFile != null) {
+        _shareBill(imgFile);
+      }
+    }
+  }
+
+  void _shareBill(File file) {
+    String text;
+    if (Get.arguments['bank'] != '') {
+      text = "정산해욥:: ${Get.arguments['bank']}";
+    } else {
+      text = "정산해욥";
+    }
+
+    if (Platform.isAndroid) {
+      print("Android");
+      Share.shareXFiles([XFile(file.path)], text: text);
+    } else {
+      print("IOS");
+      var box = globalKey.currentContext?.findRenderObject() as RenderBox?;
+      Share.shareXFiles([XFile(file.path)],
+          text: text,
+          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+    }
+  }
+
+  void _goHome() {
+    _onBackKey('HOME');
+    // Get.offAll(() => const MainApp());
   }
 }
 
