@@ -103,7 +103,8 @@ class _MainPageState extends State<MainPage> {
             width: 100,
             child: RawMaterialButton(
               onPressed: () {
-                Get.to(() => const InputPage());
+                Get.to(() => const InputPage(),
+                    arguments: {'itemList': [], 'priceList': []});
               },
               elevation: 0.0,
               focusElevation: 0.0,

@@ -19,6 +19,9 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
+    _itemList = Get.arguments['itemList'];
+    _priceList = Get.arguments['priceList'];
+
     _itemList.add("예시");
     _priceList.add(73);
     return WillPopScope(
