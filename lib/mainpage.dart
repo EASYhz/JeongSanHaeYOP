@@ -103,8 +103,7 @@ class _MainPageState extends State<MainPage> {
             width: 100,
             child: RawMaterialButton(
               onPressed: () {
-                Get.to(() => const InputPage(),
-                    arguments: {'itemList': [], 'priceList': []});
+                Get.to(() => const InputPage());
               },
               elevation: 0.0,
               focusElevation: 0.0,
@@ -185,8 +184,9 @@ class _MainPageState extends State<MainPage> {
         var b = [];
         List splitData = [];
         for (int i = 0; i < _croppedImgList.length; i++) {
-          var a = await getImageToText(_croppedImgList[i]);
+          // var a = await getImageToText(_croppedImgList[i]);
           // b.add(a);
+          var a = "";
           var tmp = a.split("\r\n");
           for (var item in tmp) {
             splitData.add(item);
