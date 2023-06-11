@@ -77,17 +77,20 @@ class _SelectPageState extends State<SelectPage> {
                     color: Colors.white,
                     icon: const Icon(Icons.arrow_back_ios_new)),
               ),
-              body: Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    // 캡쳐 이미지가 들어간 박스
-                    imageBox(context),
-                    // TextButton(onPressed: () {}, child: Text("이미지 추가")),
-                    // 가격 텍스트와 총액이 들어간 박스
-                    const Expanded(child: CalculatePrice())
-                  ],
+              body: GestureDetector(
+                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // 캡쳐 이미지가 들어간 박스
+                      imageBox(context),
+                      // TextButton(onPressed: () {}, child: Text("이미지 추가")),
+                      // 가격 텍스트와 총액이 들어간 박스
+                      const Expanded(child: CalculatePrice())
+                    ],
+                  ),
                 ),
               )),
         ));
