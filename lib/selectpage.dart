@@ -24,6 +24,10 @@ import 'package:intl/intl.dart';
 ///
 ///
 /// 모두 선택 기능 추가??
+///
+///
+/// TODO :: 키보드 활성화시 입력창 포커스 2023.06.26
+
 // 'assets/images/img1.png',
 // 'assets/images/img2.png',
 // 'assets/images/img3.png'
