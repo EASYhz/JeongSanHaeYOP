@@ -26,7 +26,9 @@ import 'package:intl/intl.dart';
 /// 모두 선택 기능 추가??
 ///
 ///
-/// TODO :: 키보드 활성화시 입력창 포커스 2023.06.26
+/// FIXME :: 키보드 활성화시 입력창 포커스 2023.06.26
+/// TODO :: 결함 찾기 2023.07.05
+/// TODO :: 배포 세팅 2023.07.05
 
 // 'assets/images/img1.png',
 // 'assets/images/img2.png',
