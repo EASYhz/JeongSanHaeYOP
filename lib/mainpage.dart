@@ -184,6 +184,7 @@ class _MainPageState extends State<MainPage> {
         var b = [];
         List splitData = [];
         for (int i = 0; i < _croppedImgList.length; i++) {
+          // TODO :: 주석 제거
           // var a = await getImageToText(_croppedImgList[i]);
           // b.add(a);
           var a = "";
