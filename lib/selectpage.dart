@@ -29,6 +29,7 @@ import 'package:intl/intl.dart';
 /// FIXME :: 키보드 활성화시 입력창 포커스 2023.06.26
 /// TODO :: 결함 찾기 2023.07.05
 /// TODO :: 배포 세팅 2023.07.05
+/// TODO :: 앱 튜토리얼 만들기 2023.07.06
 
 // 'assets/images/img1.png',
 // 'assets/images/img2.png',
