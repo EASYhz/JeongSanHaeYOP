@@ -3,7 +3,7 @@
 
 OCR로 출금 내역을 스캔하고 원하는 내역만 계산할 수 있도록 하는 앱 서비스
 
-<img src = "https://github.com/EASYhz/JeongSanHaeYOP/assets/65584699/82c73d1b-e506-418a-8283-618f961a90bd" width="39%"> 
+<img src = "https://github.com/EASYhz/JeongSanHaeYOP/assets/65584699/82c73d1b-e506-418a-8283-618f961a90bd" width="20%"> 
 
 ## Features
 
